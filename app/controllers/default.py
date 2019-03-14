@@ -1,7 +1,7 @@
 import os
 
 from app import app
-from flask import render_template, request, redirect, flash, url_for
+from flask import render_template, request, redirect, flash, url_for,session
 
 from wtforms import (StringField, BooleanField, DateTimeField,
                      RadioField,SelectField,TextField,
@@ -9,11 +9,13 @@ from wtforms import (StringField, BooleanField, DateTimeField,
 from wtforms.validators import DataRequired
 from app.models.forms import InfoForm
 
-@app.route("/")
+@app.route("/", methods=['POST','GET'])
 def index():
     form = InfoForm()
     if form.validate_on_submit():
         session['breed'] = form.breed.data
+        ftext =  'you change your breed for '+session['breed']
+        flash(ftext)
         return redirect(url_for("index"))
     return render_template("index.html",form=form)
 
