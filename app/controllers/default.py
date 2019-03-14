@@ -7,10 +7,15 @@ from wtforms import (StringField, BooleanField, DateTimeField,
                      RadioField,SelectField,TextField,
                      TextAreaField,SubmitField)
 from wtforms.validators import DataRequired
+from app.models.forms import InfoForm
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    form = InfoForm()
+    if form.validate_on_submit():
+        session['breed'] = form.breed.data
+        return redirect(url_for("index"))
+    return render_template("index.html",form=form)
 
 @app.errorhandler(404)
 def page_not_found(e):

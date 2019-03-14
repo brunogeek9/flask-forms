@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import (StringField, BooleanField, DateTimeField,
-                     RadioField,SelectField,TextField,
-                     TextAreaField,SubmitField)
+from wtforms import (StringField, SubmitField)
+from wtforms.validators import DataRequired
+
 class InfoForm(FlaskForm):
     '''
     This general class gets a lot of form about puppies.
