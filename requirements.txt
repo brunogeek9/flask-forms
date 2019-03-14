@@ -1,7 +1,4 @@
 Flask
-Redis
-Flask-sqlalchemy==2.3
-Flask-migrate
 Flask-script
 flask_wtf
 wtforms
